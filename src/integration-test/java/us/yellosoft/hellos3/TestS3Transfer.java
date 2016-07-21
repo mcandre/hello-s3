@@ -13,14 +13,12 @@ public class TestS3Transfer {
   @Test
   public void testTransfer() throws Exception {
     final AmazonS3Client amazonS3Client = new AmazonS3Client();
-
     amazonS3Client.createBucket(BUCKET);
     amazonS3Client.putObject(BUCKET, KEY, CONTENT);
 
     Assert.assertEquals(CONTENT, amazonS3Client.getObjectAsString(BUCKET, KEY));
 
     amazonS3Client.deleteObject(BUCKET, KEY);
-
     amazonS3Client.deleteBucket(BUCKET);
     amazonS3Client.shutdown();
   }
